@@ -8,12 +8,26 @@ import Foundation
 // INPUT
 // Collect and filter user input here
 
+var givenInput = 0
+while 1 == 1 {
+    
+    guard let givenInput = readLine() else {
+        continue
+    }
+    if givenInput.count < 0 || givenInput.count > 10000 {
+        continue
+    }
+    break
+}
+
 // PROCESS
 // Implement the primary logic of the problem here
 // Some output may be given here if you desire
 
-// Example of how to collect multiple input lines
-let expectedLines = 4
+var englishLetters = 0
+var frenchLetters = 0
+let expectedLines = 0
+
 print("Please enter the \(expectedLines) lines of text:")
 for _ in 1...expectedLines {
     
@@ -28,8 +42,25 @@ for _ in 1...expectedLines {
     print(givenLine)
     
 }
+for letters in givenLine {
+    switch letters {
+    case "t" , "T":
+        englishLetters += 1
+    case "s" , "S":
+        frenchLetters += 1
+    default:
+        break
+    }
+}
 
-// OUTPUT
+
+
+//Output
 // Report results to the user here
 
+if englishLetters > frenchLetters {
+    print("This looks like English.")
+} else {
+    print("This looks like French")
+}
 
