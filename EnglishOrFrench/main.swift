@@ -8,16 +8,32 @@ import Foundation
 // INPUT
 // Collect and filter user input here
 
-var givenInput = 0
+// Expected lines
+var expectedLines = -1 // Temporary value, but GLOBAL variable so we can use this in PROCESS
 while 1 == 1 {
     
+    // Ask the user how many lines of input to expect?
+    print("How many lines?")
+    
+    // Test #1: Get the input and see if it is nil
     guard let givenInput = readLine() else {
         continue
     }
-    if givenInput.count < 0 || givenInput.count > 10000 {
+    
+    // Test #2: Can I make the input an integer?
+    guard let givenInteger = Int(givenInput) else {
         continue
     }
-    break
+    
+    // Test #3: Is it in the correct range?
+    if givenInteger < 0 || givenInteger > 10000 {
+        continue
+    }
+    
+    // If we made it here, the input passed all the tests, so save it in the global variable
+    // to use later on
+    expectedLines = givenInteger
+    break // stop the loop
 }
 
 // PROCESS
@@ -26,7 +42,6 @@ while 1 == 1 {
 
 var englishLetters = 0
 var frenchLetters = 0
-let expectedLines = 0
 
 print("Please enter the \(expectedLines) lines of text:")
 for _ in 1...expectedLines {
@@ -39,21 +54,18 @@ for _ in 1...expectedLines {
     }
     
     // Now we have the line, we can print it out, analyze it as needed, et cetera
-    print(givenLine)
-    
-}
-for letters in givenLine {
-    switch letters {
-    case "t" , "T":
-        englishLetters += 1
-    case "s" , "S":
-        frenchLetters += 1
-    default:
-        break
+    for letter in givenLine {
+        switch letter {
+        case "t" , "T":
+            englishLetters += 1
+        case "s" , "S":
+            frenchLetters += 1
+        default:
+            break
+        }
     }
+
 }
-
-
 
 //Output
 // Report results to the user here
